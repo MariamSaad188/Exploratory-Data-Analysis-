@@ -1,0 +1,125 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import pandas as pd
+import seaborn as sns 
+import matplotlib.pyplot as plt
+
+
+# In[2]:
+
+
+df = pd.read_csv(r"C:\Users\mrmr_\Downloads\world_population.csv")
+
+
+# In[5]:
+
+
+df
+
+
+# In[12]:
+
+
+df.head(2)
+
+
+# In[4]:
+
+
+pd.set_option('display.float_format', lambda x: '%.2f' % x)
+
+
+# In[6]:
+
+
+df.info()
+
+
+# In[7]:
+
+
+df.describe()
+
+
+# In[8]:
+
+
+df.isnull().sum()
+
+
+# In[13]:
+
+
+df.nunique()
+
+
+# In[16]:
+
+
+df.max()
+
+
+# In[48]:
+
+
+df.sort_values(by='Continent', ascending=False)
+
+
+# In[36]:
+
+
+df.corr(numeric_only=True)
+
+
+
+
+# In[43]:
+
+
+sns.heatmap(df.corr(numeric_only=True), annot = True)
+
+plt.rcParams['figure.figsize'] = (40,7)
+
+plt.show()
+
+
+# In[46]:
+
+
+df.groupby('Continent').mean(numeric_only=True)
+
+
+# In[52]:
+
+
+df2 = df.groupby('Continent').mean(numeric_only=True).sort_values(by="2022 Population",ascending=False)
+df2
+
+
+# In[56]:
+
+
+df3 = df2.transpose()
+
+
+# In[57]:
+
+
+df3.plot()
+
+
+# In[58]:
+
+
+df.boxplot()
+
+
+# In[ ]:
+
+
+
+
